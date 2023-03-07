@@ -77,7 +77,6 @@ class EmbeddingsFlow(FlowSpec):
 
         model = CLIPModel.from_pretrained(self.model_name).to(self.device)
         processor = AutoProcessor.from_pretrained(self.model_name)
-        # tokenizer = AutoTokenizer.from_pretrained(model_name)
 
         start_time = time.perf_counter()
 
@@ -102,29 +101,7 @@ class EmbeddingsFlow(FlowSpec):
 
             if processed_count % self.modulo == 0:
                 print(f"Processed images: {processed_count}")
-
-            #
-            # image_features = image_features / image_features.norm(p=2, dim=-1, keepdim=True)
-            #
-            # logit_scale = model.logit_scale.exp()
-            #
-            # torch.matmul(text_features, image_features.t()) * logit_scale
-            #
-            # similarity = torch.nn.functional.cosine_similarity(text_features, image_features) * logit_scale
-            #
-            # if image_path_index % modulo == 0:
-            #     print(f"Similarity Tensor: {similarity}")
-            #
-            # probs = softmax_model(similarity)
-            #
-            # for query_index, prob in enumerate(queries):
-            #     # print(f"Image: {image_path_index} - Image Path: {image_path}\n\tQuery: {queries[query_index]}\n\tProb: {probs[i]}")
-            #     if image_path_index % modulo == 0:
-            #         print(f"image_{image_path_index}_{image_path}_{query_index}_{probs[query_index]}")
-            #
-            # outputs = model(**inputs)
-            # logits_per_image = outputs.logits_per_image  # this is the image-text similarity score
-            # probs = logits_per_image.softmax(dim=1)
+            
             for image in images:
                 image.close()
                 del image
