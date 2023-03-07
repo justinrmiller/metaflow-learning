@@ -1,0 +1,9 @@
+metaflow==2.8.0
+
+datasets==2.10.1
+transformers==4.26.1
+
+torch==1.13.1
+
+Pillow
+requests
